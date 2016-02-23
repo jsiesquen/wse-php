@@ -1,0 +1,100 @@
+FORMAT: 1A
+HOST: private-6d2fc-yuanlog.apiary-proxy.com
+
+# Yuan Activities Log API
+
+Provide services for all Yuan's apps family.
+
+# Group Activities
+
+
+## My Activity [/activities{?id}]
+
+### One activity [GET]
+
++ Request
+    + Headers
+    
+            Authorization: Basic dXNlcjpwYXNzd29yZA==
+            x-api-version: 1.0
+            
++ Parameters
+    + id (required, string)   - Id of one activity
+
++ Response 200 (application/json)
+
+## My Activities [/activities{?page,size}]
+
+### List All Activities [GET]
+
++ Request
+    + Headers
+    
+            Authorization: Basic dXNlcjpwYXNzd29yZA==
+            x-api-version: 1.0
+
++ Parameters
+    + page (required, number)   - Pages number
+        Default: 1
+    + size (required, number)   - Page size
+        Default: 10
+
++ Response 200 (application/json)
+    + Headers
+    
+            ETag : "jshdjhj34734sfjsdsj"
+            cache-control: max-age=600
+    
+    + Body
+
+            {
+                "page":
+                {
+                    "number": 1,
+                    "size": 10,
+                    "totalPages": 20
+                },
+                "activities": 
+                    [
+                        {
+                            "subject": "Play soccer with Renzo",
+                            "planed_at": "2016-02-21T09:30:00.000Z",
+                            "recorded_at": "2016-02-20T08:40:51.620Z",
+                            "tag": [ "enterteiment", "family" ]
+                        },
+                        {
+                            "subject": "Book now romantic meal for two.",
+                            "planed_at": "2016-02-21T09:30:00.000Z",
+                            "recorded_at": "2016-02-19T14:53:11.230Z",
+                            "tag": [ "surprise", "family", "loving" ]
+                        }
+                    ]
+            }
+            
+### New Activity [POST]
+
++ Request
+    + Headers
+    
+            Authorization: Basic dXNlcjpwYXNzd29yZA==
+            Content-type: application/json
+            x-api-version: 1.0
+    + Body
+
+            {
+                "subject": "Get medical secure for childs",
+                "planed_at": "2016-02-23T11:30:00.000Z",
+                "tags": [
+                            "family",
+                            "health"
+                        ]
+            }
+
++ Response 201 (application/json)
+    + Headers
+    
+            Location: activities/134732
+    + Body
+    
+            {
+            }
